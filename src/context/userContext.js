@@ -1,7 +1,10 @@
 import { createContext, useContext, useState } from 'react';
 const UserContext = createContext();
 const UserProvider = ({ children }) => {
-  const [users, setUsers] = useState({ firstUser: {}, secondUser: {} });
+  const [users, setUsers] = useState({
+    firstUser: { name: null, friends: [] },
+    secondUser: { name: null, friends: [] },
+  });
   return (
     <UserContext.Provider value={{ users, setUsers }}>
       {children}

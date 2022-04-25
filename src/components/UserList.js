@@ -1,26 +1,26 @@
 import React from 'react';
 import Users from './Users';
-import { users } from './../data/data';
+import { data } from './../data/data';
 import { useUsers } from './../context/userContext';
 function UserList({ column }) {
-  const { user } = useUsers();
+  const { users } = useUsers();
   const getUserImg = () => {
     if (column === 'left') {
       return (
-        user?.firstUser?.img ||
+        users?.firstUser?.img ||
         'https://cdn.landesa.org/wp-content/uploads/default-user-image.png'
       );
     }
     if (column === 'right') {
       return (
-        user?.secondUser?.img ||
+        users?.secondUser?.img ||
         'https://cdn.landesa.org/wp-content/uploads/default-user-image.png'
       );
     }
   };
   const getUserName = () => {
-    if (column === 'left') return user?.firstUser?.name || 'Pick an user';
-    if (column === 'right') return user?.secondUser?.name || 'Pick an user';
+    if (column === 'left') return users?.firstUser?.name || 'Pick an user';
+    if (column === 'right') return users?.secondUser?.name || 'Pick an user';
   };
   return (
     <div className="flex flex-col gap-5">
@@ -32,12 +32,14 @@ function UserList({ column }) {
         />
         <h2>{getUserName()}</h2>
       </div>
-      {users.map((user, index) => {
+      {data.map((user, index) => {
         return (
           <Users
             img={`https://i.pravatar.cc/150?img=${index}`}
             name={user.name}
             email={user.email}
+            friends={user.friends}
+            column={column}
           />
         );
       })}

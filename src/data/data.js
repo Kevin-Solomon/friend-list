@@ -1,4 +1,4 @@
-const users = [
+const data = [
   {
     name: 'Sameer',
     email: 'sameer@gmail.com',
@@ -24,4 +24,4 @@ const users = [
     friends: ['Bhaskar'],
   },
 ];
-export { users };
+export { data };

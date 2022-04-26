@@ -10,6 +10,7 @@ function App() {
   const { datalist, setDatalist } = useData();
   const [name, setName] = useState('');
   const [friends, setFriends] = useState('');
+  const [error, setError] = useState('');
   console.log(datalist, 'asd');
   console.log(users);
   let connect = '';
@@ -43,6 +44,9 @@ function App() {
   return (
     <>
       <div className="flex gap-4 justify-center items-center h-full w-full grow flex-col">
+        <h1 className="font-medium leading-tight text-4xl mt-0 mb-2 text-red-600">
+          Friend List
+        </h1>
         <h1>
           {getConnections(users.firstUser.name, users.secondUser.name)}
           {getString(connect)}
@@ -61,11 +65,18 @@ function App() {
           value={friends}
           onChange={e => setFriends(e.target.value)}
         />
+        <p>{error}</p>
         <button
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
           onClick={() => {
-            setDatalist(prev => [...prev, { name, friends: [friends] }]);
-            setName('');
-            setFriends('');
+            if (name === '' || friends === '') {
+              setError('Enter Proper Credentials');
+            } else {
+              setDatalist(prev => [...prev, { name, friends: [friends] }]);
+              setName('');
+              setFriends('');
+              setError('');
+            }
           }}
         >
           Add User

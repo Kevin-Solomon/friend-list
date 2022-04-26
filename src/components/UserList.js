@@ -1,9 +1,10 @@
 import React from 'react';
 import Users from './Users';
-import { data } from './../data/data';
 import { useUsers } from './../context/userContext';
+import { useData } from '../context/dataContext';
 function UserList({ column }) {
   const { users } = useUsers();
+  const { datalist } = useData();
   const getUserImg = () => {
     if (column === 'left') {
       return (
@@ -32,7 +33,7 @@ function UserList({ column }) {
         />
         <h2>{getUserName()}</h2>
       </div>
-      {data.map((user, index) => {
+      {datalist.map((user, index) => {
         return (
           <Users
             img={`https://i.pravatar.cc/150?img=${index}`}
